@@ -1,0 +1,216 @@
+@use "vars";
+
+
+@font-face {
+    font-family: 'lovatolight';
+    src: url('./fonts/Lovato-Light-webfont.ttf');
+}
+
+@font-face {
+    font-family: 'josefinslab';
+    src: url('./fonts/josefinslab-bold-webfont.ttf');
+    font-weight: bold;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    max-width: 1400px;
+    margin: 0 auto;
+    font-family: 'lovatolight';
+    font-size: 18px;
+    line-height: 28px;
+    letter-spacing: 0.5px;
+    word-spacing: 3px;
+}
+
+img {
+    width: 1em;
+    position: relative;
+    left: 3px;
+    top: 1.5px;
+    margin-right: 3px;
+}
+
+a {
+    color: vars.$primary-color;
+    text-decoration: underline;
+
+    &:hover {
+        text-decoration: none;
+        cursor: pointer;
+    }
+    &:focus {
+        text-decoration: none;
+    }
+    &:active {
+        color: transparent;
+        text-shadow: 0px 0px 1px #f00,
+                   0px 0px 2px #f00,
+                   0px 0px 3px black,
+                   0px 0px 4px black;
+    }
+}
+
+
+header {
+    @include vars.flex-center;
+    width: 100%;
+    min-width: vars.$section-min-width;
+    padding: 20px;
+    border-top: 5px vars.$primary-color solid;
+    border-bottom: 5px vars.$primary-color solid;
+    @media (max-width: 700px){
+        border-bottom: 0;
+        padding: 0 0 0 0;
+    }
+
+    h1 {
+        text-align: center;
+        font-family: 'josefinslab';
+        font-weight: bold;
+        font-size: 50px;
+        line-height: 1.2em;
+        letter-spacing: 2px;
+        word-spacing: 0;
+        margin: 32px auto;
+    }
+}
+
+
+.main-content {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    @media (max-width: 700px) {
+
+            flex-direction: column-reverse;
+
+    }
+
+    h2 {
+        font-family: 'josefinslab';
+        font-weight: bold;
+        font-size: 32px;
+        line-height: 38px;
+        letter-spacing: 2px;
+        word-spacing: 0;
+        margin: 25px 0;
+    }
+
+    .section-and-aside {
+        display: flex;
+        flex-direction: row;
+        width: 80%;
+        @media (max-width: 950px) {
+            flex-direction: column;
+        }
+        @media (max-width: 700px) {
+            width: 100%;
+        }
+
+        section {
+            width: 50% / 80 * 100;
+            min-width: vars.$section-min-width;
+            padding: 0 20px 20px 20px;
+            
+            @media (max-width: 950px) {
+                width: 100%;
+            }
+
+            .first-paragraph { text-indent: 20px; }
+            .nowrap { white-space: nowrap; }
+        }
+    
+        aside {
+            display: block;
+            width: 30% / 80 * 100;
+            min-width: vars.$aside-min-width;
+            padding: 0 20px 20px 20px;
+            @media (max-width: 950px) {
+                width: 100%;
+            }
+        }
+    }
+
+    nav {
+        display: flex;
+        width: 20%;
+        min-width: vars.$nav-min-width;
+        padding: 20px;
+        @media (max-width: 700px) {
+            
+                align-items: center;
+                justify-content: center;
+                width: 100%;
+                min-width: 500px;
+                padding: 0;
+                background-color: rgb(170, 102, 102);
+
+        }
+
+        ul {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            @media (max-width: 700px){
+                // flex-direction: row;
+                flex-flow: row wrap;
+                justify-content: space-around;
+            }
+            li {
+                @include vars.flex-center;
+                width: 100%;
+                margin-bottom: 20px;
+                border: 1px vars.$primary-color solid;
+                cursor: pointer;
+
+                @media (max-width: 700px){
+                    margin: 0 15px 0 0;
+                    width: auto;
+                    border: 0px;
+                }
+
+
+                &:last-child { margin-bottom: 0; }
+                &:hover { background-color: vars.$primary-color; }
+                &:active { background-color: black; }
+                &:has(a:focus) { background-color: vars.$primary-color; }
+
+                a {
+                    font-size: 25px;
+                    line-height: 75px;
+                    color: vars.$primary-color;
+                    text-decoration: none;
+                    &:focus { color: white; }
+                    @media (max-width: 700px){
+                        color: white;
+                    }
+                }
+                &:hover a { 
+                    color: white; 
+                    @media (max-width: 700px){
+                        color: black;
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }  
+    }
+}
+
+
+footer {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-width: vars.$section-min-width;
+    padding: 20px;
+    border-top: 5px vars.$primary-color solid;
+    border-bottom: 5px vars.$primary-color solid;
+}
